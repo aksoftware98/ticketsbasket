@@ -1,4 +1,7 @@
 ## Welcome to TicketsBasket (First Free Full Cloud Project Course)
+
+  ![Welcome to TicketsBasket](https://github.com/aksoftware98/ticketsbasket/Images/cover.jpg?raw=true)
+
 TicketsBasket is the name of the project that we are building within the course, I prefer to give such a projects a name and branding instead of calling them demos, because in this way it looks like more realistic in addition to teaching the learners how to deal with the branding section in the solution.
 The idea of the TicketsBasket project, is a software solution that combines the Events Organizers and the public in the same place, so the organizers can create and manage events (Conferences, Exhibitions, Sport Events .... etc.) and the public can view these events, shortlist, like them and of course book a tickets to attend them. 
 
@@ -7,7 +10,7 @@ The idea of the TicketsBasket project, is a software solution that combines the 
  Through out the project we will build the app using C#, ASP.NET Core API, Blazor WebAssembly and Microsoft Azure.
  So you will learn how to combine all the .NET technologies to deliver a full product from A to Z following the best practices and the using the most cutting edge technologies in the industry. 
   
-  ![enter image description here](https://ahmadmozaffarstorage.blob.core.windows.net/blogs/Tickets%20Basket%20Technologes%20to%20use.png)
+  ![Technologies to be used](https://github.com/aksoftware98/ticketsbasket/Images/technologies.png?raw=true)
 
 The previous picture shows the Azure services that will be used:
 
