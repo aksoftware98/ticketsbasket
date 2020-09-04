@@ -7,7 +7,7 @@ The idea of the TicketsBasket project, is a software solution that combines the 
  Through out the project we will build the app using C#, ASP.NET Core API, Blazor WebAssembly and Microsoft Azure.
  So you will learn how to combine all the .NET technologies to deliver a full product from A to Z following the best practices and the using the most cutting edge technologies in the industry. 
   
-  ![Azure Services to be used](https://ahmadmozaffarstorage.blob.core.windows.net/blogs/Tickets%20Basket%20Technologes%20to%20use.png)
+  ![enter image description here](https://ahmadmozaffarstorage.blob.core.windows.net/blogs/Tickets%20Basket%20Technologes%20to%20use.png)
 
 The previous picture shows the Azure services that will be used:
 
