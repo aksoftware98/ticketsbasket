@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketsBasket.Models", "Tic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketsBasket.Api", "TicketsBasket.Api\TicketsBasket.Api.csproj", "{955689E9-AACE-453A-9913-28503EC5C12A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{808D6B50-9C54-4F2D-BB7F-609AF21AE24D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketsBasket", "TicketsBasket.Blazor\TicketsBasket.csproj", "{9F49100C-4EDC-4A42-B791-00FBF6FF24D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +27,10 @@ Global
 		{955689E9-AACE-453A-9913-28503EC5C12A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{955689E9-AACE-453A-9913-28503EC5C12A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{955689E9-AACE-453A-9913-28503EC5C12A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F49100C-4EDC-4A42-B791-00FBF6FF24D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F49100C-4EDC-4A42-B791-00FBF6FF24D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F49100C-4EDC-4A42-B791-00FBF6FF24D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F49100C-4EDC-4A42-B791-00FBF6FF24D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{72527EFD-69A1-4CF4-AC66-58C759386E1A} = {817F2DD5-2BEE-458A-BD90-40A87C0158B2}
 		{955689E9-AACE-453A-9913-28503EC5C12A} = {817F2DD5-2BEE-458A-BD90-40A87C0158B2}
+		{9F49100C-4EDC-4A42-B791-00FBF6FF24D1} = {808D6B50-9C54-4F2D-BB7F-609AF21AE24D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {42718975-FC62-4DD1-A52F-6BC66CBC629B}
