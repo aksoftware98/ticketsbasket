@@ -30,6 +30,14 @@ namespace TicketsBasket.Api
             services.AddAuthentication(AzureADB2CDefaults.BearerAuthenticationScheme)
                 .AddAzureADB2CBearer(options => Configuration.Bind("AzureAdB2C", options));
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", policy =>
+                {
+                    policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                });
+            });
+
             services.AddControllers();
         }
 
@@ -44,6 +52,7 @@ namespace TicketsBasket.Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors("CorsPolicy");
 
             app.UseAuthentication();
             app.UseAuthorization();
