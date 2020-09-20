@@ -81,6 +81,11 @@ namespace TicketsBasket.Models.Data
                 .WithOne(p => p.Event)
                 .OnDelete(DeleteBehavior.NoAction);
 
+            modelBuilder.Entity<Event>()
+                .HasMany(p => p.WishlistEvents)
+                .WithOne(p => p.Event)
+                .OnDelete(DeleteBehavior.NoAction);
+
 
             base.OnModelCreating(modelBuilder);
         }

@@ -12,6 +12,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using TicketsBasket.Models.Data;
+using Microsoft.EntityFrameworkCore;
+using TicketsBasket.Api.Extensions; 
 
 namespace TicketsBasket.Api
 {
@@ -27,17 +30,11 @@ namespace TicketsBasket.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthentication(AzureADB2CDefaults.BearerAuthenticationScheme)
-                .AddAzureADB2CBearer(options => Configuration.Bind("AzureAdB2C", options));
 
-            services.AddCors(options =>
-            {
-                options.AddPolicy("CorsPolicy", policy =>
-                {
-                    policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
-                });
-            });
-
+            services.AddB2CAuthentication(Configuration);
+            services.AddApplicationDatabaseContext(Configuration);
+            services.ConfigureCors(); 
+           
             services.AddControllers();
         }
 
