@@ -33,6 +33,9 @@ namespace TicketsBasket.Models.Domain
         [StringLength(25)]
         public string City { get; set; }
 
+        [Required]
+        public string UserId { get; set; }
+
         public bool IsOrganizer { get; set; }
 
         public DateTime CreatedOn { get; set; }
