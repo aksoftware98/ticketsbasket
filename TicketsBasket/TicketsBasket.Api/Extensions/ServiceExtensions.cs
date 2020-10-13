@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TicketsBasket.Models.Data;
+using TicketsBasket.Repositories;
 
 namespace TicketsBasket.Api.Extensions
 {
@@ -29,6 +30,11 @@ namespace TicketsBasket.Api.Extensions
                     sqlOptions.MigrationsAssembly("TicketsBasket.Api");
                 });
             });
+        }
+
+        public static void AddUnitOfWork(this IServiceCollection services)
+        {
+            services.AddScoped<IUnitOfWork, EfUnitOfWork>();
         }
 
         public static void ConfigureCors(this IServiceCollection services)
