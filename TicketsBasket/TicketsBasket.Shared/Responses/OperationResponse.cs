@@ -9,6 +9,7 @@ namespace TicketsBasket.Shared.Responses
 
         public string Message { get; set; }
         public T Record { get; set; }
+        public bool IsSuccess { get; set; }
 
     }
 }

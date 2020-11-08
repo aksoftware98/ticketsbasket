@@ -34,6 +34,7 @@ namespace TicketsBasket.Api
             services.AddB2CAuthentication(Configuration);
             services.AddApplicationDatabaseContext(Configuration);
             services.AddUnitOfWork(); 
+            services.AddBusinessServices(); 
             services.ConfigureCors();
             services.ConfigureIdentityOptions();
             services.AddHttpContextAccessor();

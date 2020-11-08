@@ -1,11 +1,15 @@
 @page "/fetchdata"
 @inject HttpClient Http
+@inject Microsoft.AspNetCore.Components.WebAssembly.Authentication.IAccessTokenProvider accessTokenProvider
+@inject Microsoft.Extensions.Configuration.IConfiguration configuration 
 
 @attribute [Authorize]
 
 <h1>Weather forecast</h1>
 
 <p>This component demonstrates fetching data from the server.</p>
+
+<p>@token</p>
 
 @if (forecasts == null)
 {
@@ -38,10 +42,11 @@ else
 
 @code {
     private WeatherForecast[] forecasts;
-
+    string token = string.Empty;
     protected override async Task OnInitializedAsync()
     {
         forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
+        token = await GetAccessTokenAsync();
     }
 
     public class WeatherForecast
@@ -53,5 +58,22 @@ else
         public string Summary { get; set; }
 
         public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    }
+
+    async Task<string> GetAccessTokenAsync()
+    {
+        var tokenResult = await accessTokenProvider.RequestAccessToken(new Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenRequestOptions
+        {
+            Scopes = new[]
+            {
+                configuration["AzureAdB2C:Scope"]
+            }
+        });
+
+        var result = tokenResult.TryGetToken(out var accessToken);
+        if (result)
+            return accessToken.Value;
+
+        return null;
     }
 }

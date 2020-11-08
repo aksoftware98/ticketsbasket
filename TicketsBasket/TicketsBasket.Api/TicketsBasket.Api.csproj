@@ -17,6 +17,7 @@
     <ProjectReference Include="..\TicketsBasket.Infrastructure\TicketsBasket.Infrastructure.csproj" />
     <ProjectReference Include="..\TicketsBasket.Models\TicketsBasket.Models.csproj" />
     <ProjectReference Include="..\TicketsBasket.Repositories\TicketsBasket.Repositories.csproj" />
+    <ProjectReference Include="..\TicketsBasket.Services\TicketsBasket.Services.csproj" />
   </ItemGroup>
 
 </Project>

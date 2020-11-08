@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using TicketsBasket.Infrastructure.Options;
 using TicketsBasket.Models.Data;
 using TicketsBasket.Repositories;
+using TicketsBasket.Services;
 
 namespace TicketsBasket.Api.Extensions
 {
@@ -70,6 +71,12 @@ namespace TicketsBasket.Api.Extensions
 
                 return identityOptions;
             });
+        }
+
+
+        public static void AddBusinessServices(this IServiceCollection services)
+        {
+            services.AddScoped<IUserProfilesService, UserProfilesService>(); 
         }
 
 
