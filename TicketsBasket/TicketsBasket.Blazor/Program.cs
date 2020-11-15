@@ -31,6 +31,8 @@ namespace TicketsBasket
             {
                 builder.Configuration.Bind("AzureAdB2C", options.ProviderOptions.Authentication);
                 options.ProviderOptions.DefaultAccessTokenScopes.Add(builder.Configuration["AzureAdB2C:Scope"]);
+                options.ProviderOptions.DefaultAccessTokenScopes.Add("offline_access");
+                options.ProviderOptions.DefaultAccessTokenScopes.Add("openid");
             });
 
             await builder.Build().RunAsync();

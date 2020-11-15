@@ -1,16 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <UserSecretsId>aspnet-TicketsBasket.Api-B9C257C9-CA29-4AEB-BAEA-F04ABAFF43EB</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.AzureADB2C.UI" Version="3.1.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.tools" Version="3.1.8">
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.AzureADB2C.UI" Version="5.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.tools" Version="5.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Identity.Web" Version="1.3.0" />
   </ItemGroup>
 
   <ItemGroup>
