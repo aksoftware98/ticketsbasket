@@ -37,7 +37,6 @@ namespace TicketsBasket.Services
                 return Error<UserProfileDetail>("Profile not found", null);
 
             return Success("Profile retrieved successfully", userProfile.ToUserProfileDetail());
-
         }
     }
 }
