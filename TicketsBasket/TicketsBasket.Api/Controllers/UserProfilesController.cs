@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TicketsBasket.Services;
+using TicketsBasket.Shared.Models;
+using TicketsBasket.Shared.Requests;
+using TicketsBasket.Shared.Responses;
 
 namespace TicketsBasket.Api.Controllers
 {
@@ -22,6 +25,8 @@ namespace TicketsBasket.Api.Controllers
             _userProfilesService = userProfilesService; 
         }
 
+        [ProducesResponseType(200, Type = typeof(OperationResponse<UserProfileDetail>))]
+        [ProducesResponseType(404)]
         [HttpGet]
         public async Task<IActionResult> Get()
         {
@@ -30,6 +35,18 @@ namespace TicketsBasket.Api.Controllers
                 return Ok(result);
 
             return NotFound(); 
+        }
+
+        [ProducesResponseType(200, Type = typeof(OperationResponse<UserProfileDetail>))]
+        [ProducesResponseType(400, Type = typeof(OperationResponse<UserProfileDetail>))]
+        [HttpPost]
+        public async Task<IActionResult> Post([FromForm]CreateProfileRequest model)
+        {
+            var result = await _userProfilesService.CreateProfileAsync(model);
+            if (result.IsSuccess)
+                return Ok(result);
+
+            return BadRequest(result);
         }
 
     }
