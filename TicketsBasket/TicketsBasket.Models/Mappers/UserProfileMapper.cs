@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TicketsBasket.Infrastructure.Utilities;
 using TicketsBasket.Models.Domain;
 using TicketsBasket.Shared.Models;
 
@@ -21,7 +22,7 @@ namespace TicketsBasket.Models.Mappers
                 LastName = userProfile.LastName,
                 UserId = userProfile.UserId,
                 ProfilePicture = userProfile.ProfilePicture,
-                CreatedSince = "1m"
+                CreatedSince = DateTimeUtilities.GetPassedTime(DateTime.UtcNow, userProfile.CreatedOn),
             };
         }
 
