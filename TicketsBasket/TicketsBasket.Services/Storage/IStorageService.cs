@@ -10,7 +10,7 @@ namespace TicketsBasket.Services.Storage
     {
 
         // Save a blob 
-        Task<string> SaveBlobAsync(string containerName, IFormFile file);
+        Task<string> SaveBlobAsync(string containerName, IFormFile file, BlobType blobType);
 
         // Delete a blob 
         Task RemoveBlobAsync(string containerName, string blobName);
@@ -18,5 +18,11 @@ namespace TicketsBasket.Services.Storage
         // Get protected URL 
         string GetProtectedUrl(string container, string blob, DateTimeOffset expireDate); 
 
+    }
+
+    public enum BlobType
+    {
+        Image,
+        Document
     }
 }

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,6 +11,7 @@ using TicketsBasket.Infrastructure.Options;
 using TicketsBasket.Models.Domain;
 using TicketsBasket.Models.Mappers;
 using TicketsBasket.Repositories;
+using TicketsBasket.Services.Storage;
 using TicketsBasket.Shared.Models;
 using TicketsBasket.Shared.Requests;
 using TicketsBasket.Shared.Responses;
@@ -20,20 +22,24 @@ namespace TicketsBasket.Services
     {
         Task<OperationResponse<UserProfileDetail>> GetProfileByUserIdAsync();
 
-        Task<OperationResponse<UserProfileDetail>> CreateProfileAsync(CreateProfileRequest model); 
+        Task<OperationResponse<UserProfileDetail>> CreateProfileAsync(CreateProfileRequest model);
+        Task<OperationResponse<UserProfileDetail>> UpdateProfilePictureAsync(IFormFile image);
     }
 
     public class UserProfilesService : BaseService, IUserProfilesService
     {
 
         private readonly IdentityOptions _identity;
-        private readonly IUnitOfWork _unitOfWork; 
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IStorageService _storageService; 
 
         public UserProfilesService(IdentityOptions identity,
-                                   IUnitOfWork unitOfWork)
+                                   IUnitOfWork unitOfWork,
+                                   IStorageService storageService)
         {
             _identity = identity;
-            _unitOfWork = unitOfWork; 
+            _unitOfWork = unitOfWork;
+            _storageService = storageService; 
         }
 
         public async Task<OperationResponse<UserProfileDetail>> CreateProfileAsync(CreateProfileRequest model)
@@ -78,6 +84,40 @@ namespace TicketsBasket.Services
                 return Error<UserProfileDetail>("Profile not found", null);
 
             return Success("Profile retrieved successfully", userProfile.ToUserProfileDetail());
+        }
+
+        public async Task<OperationResponse<UserProfileDetail>> UpdateProfilePictureAsync(IFormFile image)
+        {
+            var userProfile = await _unitOfWork.UserProfiles.GetByUserId(_identity.UserId);
+
+            if (userProfile == null)
+                return Error<UserProfileDetail>("Profile not found", null);
+
+            // Save the new image 
+            string imageUrl = userProfile.ProfilePicture;
+            try
+            {
+                imageUrl = await _storageService.SaveBlobAsync("users", image, BlobType.Image);
+
+                // remove the old blob
+                if(userProfile.ProfilePicture != "Unknown")
+                {
+                    await _storageService.RemoveBlobAsync("users", userProfile.ProfilePicture); 
+                }
+
+                if (string.IsNullOrWhiteSpace(imageUrl))
+                    return Error("Image is required", userProfile.ToUserProfileDetail()); 
+            }
+            catch (BadImageFormatException)
+            {
+                return Error("Invalid image file", userProfile.ToUserProfileDetail());
+            }
+
+            userProfile.ProfilePicture = imageUrl;
+
+            await _unitOfWork.CommitChangesAsync();
+
+            return Success("Profile picture updated successfully!", userProfile.ToUserProfileDetail()); 
         }
     }
 }

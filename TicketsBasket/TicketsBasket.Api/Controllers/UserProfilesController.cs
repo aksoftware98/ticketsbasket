@@ -49,5 +49,18 @@ namespace TicketsBasket.Api.Controllers
             return BadRequest(result);
         }
 
+        [ProducesResponseType(200, Type = typeof(OperationResponse<UserProfileDetail>))]
+        [ProducesResponseType(400, Type = typeof(OperationResponse<UserProfileDetail>))]
+        [HttpPut]
+        public async Task<IActionResult> Put([FromForm]IFormFile file)
+        {
+            var result = await _userProfilesService.UpdateProfilePictureAsync(file);
+            if (result.IsSuccess)
+                return Ok(result);
+
+            return BadRequest(result);
+        }
+
+
     }
 }
