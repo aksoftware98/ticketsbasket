@@ -52,7 +52,7 @@ namespace TicketsBasket.Services
             var lastName = user.FindFirst(ClaimTypes.Surname).Value;
             var fullName = user.FindFirst("name").Value; 
             var email = user.FindFirst("emails").Value;
-
+            
             // TODO: Upload the picture to Azure Blob Storage
             string profilePictureUrl = "Unknown";
 
