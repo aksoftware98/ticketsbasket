@@ -10,7 +10,7 @@ namespace TicketsBasket.Functions.ThumpGenerator
 {
     public static class ThumpGenerator
     {
-        [FunctionName("ThumpGenerator")]
+        [FunctionName("ThumbGenerator")]
         public static void Run([BlobTrigger("images/{name}", Connection = "AzureWebJobsStorage")]Stream myBlob,
                                [Blob("images-thumbs/{name}", FileAccess.Write)]Stream thumpStream,                    
                                string name, 
