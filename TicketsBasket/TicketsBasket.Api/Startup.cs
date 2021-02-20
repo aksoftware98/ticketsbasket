@@ -14,7 +14,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using TicketsBasket.Models.Data;
 using Microsoft.EntityFrameworkCore;
-using TicketsBasket.Api.Extensions; 
+using TicketsBasket.Api.Extensions;
+using TicketsBasket.Api.Middlewares;
 
 namespace TicketsBasket.Api
 {
@@ -64,6 +65,8 @@ namespace TicketsBasket.Api
             app.UseCors("CorsPolicy");
 
             app.UseAuthentication();
+            // Add the role claim
+            app.UseMiddleware<CustomIdentityMiddleware>(); 
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
