@@ -5,3 +5,14 @@
 Welcome to your new app.
 
 <SurveyPrompt Title="How is Blazor working for you?" />
+
+<AuthorizeView>
+    @if(context.User.IsInRole("Organizer"))
+    {
+        <h3>Welcome awesome organizer</h3>
+    }
+    else
+    {
+        <h3>Welcome great user</h3>
+    }
+</AuthorizeView>
