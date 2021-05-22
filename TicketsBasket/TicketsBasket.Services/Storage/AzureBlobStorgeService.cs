@@ -66,7 +66,7 @@ namespace TicketsBasket.Services.Storage
             {
                 case BlobType.Image:
                     if (!allowedImageExtensions.Contains(extension))
-                        throw new BadImageFormatException();
+                        throw new NotSupportedException($"Image file is not supported for the extesion {extension}");
                     break;
                 case BlobType.Document:
                     if (!allowedDocumentsExtensions.Contains(extension))

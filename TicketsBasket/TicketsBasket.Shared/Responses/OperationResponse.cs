@@ -4,12 +4,26 @@ using System.Text;
 
 namespace TicketsBasket.Shared.Responses
 {
-    public class OperationResponse<T>
+
+    public class OperationResponse<T> : BaseResponse
     {
 
-        public string Message { get; set; }
         public T Record { get; set; }
-        public bool IsSuccess { get; set; }
 
+        public OperationResponse()
+        {
+            IsSuccess = true; 
+        }
+
+        public OperationResponse(string message) : this()
+        {
+            Message = message;
+        }
+
+        public OperationResponse(string message, T record) : this()
+        {
+            Message = message;
+            Record = record;
+        }
     }
 }

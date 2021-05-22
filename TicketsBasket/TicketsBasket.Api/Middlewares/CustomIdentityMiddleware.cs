@@ -21,9 +21,9 @@ namespace TicketsBasket.Api.Middlewares
             if(context.User.Identity.IsAuthenticated)
             {
                 var userProfile = await userProfilesService.GetProfileByUserIdAsync();
-                if(userProfile.Record != null)
+                if(userProfile != null)
                 {
-                    string roleName = userProfile.Record.IsOrganizer ? "Organizer" : "User"; 
+                    string roleName = userProfile.IsOrganizer ? "Organizer" : "User"; 
                     context.User.AddIdentity(new ClaimsIdentity(new Claim[] { new Claim(ClaimTypes.Role, roleName) }));
                 }
             }

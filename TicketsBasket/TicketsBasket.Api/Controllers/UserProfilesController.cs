@@ -22,7 +22,7 @@ namespace TicketsBasket.Api.Controllers
 
         public UserProfilesController(IUserProfilesService userProfilesService)
         {
-            _userProfilesService = userProfilesService; 
+            _userProfilesService = userProfilesService;
         }
 
         [ProducesResponseType(200, Type = typeof(OperationResponse<UserProfileDetail>))]
@@ -31,34 +31,25 @@ namespace TicketsBasket.Api.Controllers
         public async Task<IActionResult> Get()
         {
             var result = await _userProfilesService.GetProfileByUserIdAsync();
-            if (result.IsSuccess)
-                return Ok(result);
-
-            return NotFound(); 
+            return Ok(new OperationResponse<UserProfileDetail>("User profile retrieved successfully!", result));
         }
 
         [ProducesResponseType(200, Type = typeof(OperationResponse<UserProfileDetail>))]
         [ProducesResponseType(400, Type = typeof(OperationResponse<UserProfileDetail>))]
         [HttpPost]
-        public async Task<IActionResult> Post([FromForm]CreateProfileRequest model)
+        public async Task<IActionResult> Post([FromForm] CreateProfileRequest model)
         {
             var result = await _userProfilesService.CreateProfileAsync(model);
-            if (result.IsSuccess)
-                return Ok(result);
-
-            return BadRequest(result);
+            return Ok(new OperationResponse<UserProfileDetail>("User profile created successfully!", result));
         }
 
         [ProducesResponseType(200, Type = typeof(OperationResponse<UserProfileDetail>))]
         [ProducesResponseType(400, Type = typeof(OperationResponse<UserProfileDetail>))]
         [HttpPut]
-        public async Task<IActionResult> Put([FromForm]IFormFile file)
+        public async Task<IActionResult> Put([FromForm] IFormFile file)
         {
             var result = await _userProfilesService.UpdateProfilePictureAsync(file);
-            if (result.IsSuccess)
-                return Ok(result);
-
-            return BadRequest(result);
+            return Ok(new OperationResponse<UserProfileDetail>("Profile pictured updated successfully!", result));
         }
 
 
