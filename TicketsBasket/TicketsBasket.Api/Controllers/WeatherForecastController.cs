@@ -35,7 +35,7 @@ namespace TicketsBasket.Api.Controllers
         public IEnumerable<WeatherForecast> Get()
         {
             var rng = new Random();
-            throw new NotFoundException("This is a sample exception");
+            //throw new NotFoundException("This is a sample exception");
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
